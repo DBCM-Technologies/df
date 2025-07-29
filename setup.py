@@ -9,7 +9,7 @@ setup(
     ],
     author='DBCM Technologies',
     description='A HTTP File Server',
-    url='https://github.com/DBCMTechnologies/df',
+    url='https://github.com/DBCM-Technologies/df',
     classifiers=[
         'Programming Language :: Python :: 3',
     ],

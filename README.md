@@ -5,7 +5,7 @@
 ### Install
 
 ```
-pip install git+https://github.com/DBCMTechnologies/df
+pip install git+https://github.com/DBCM-Technologies/df
 ```
 
 ### Usage
