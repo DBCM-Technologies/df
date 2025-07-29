@@ -41,7 +41,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         if not USER_FILES:
             html = '<h2>No User Files</h2>'
         else:
-            html = '<h2>User Files</h2>\n<hr/>\n<p>Click to download:</p>\n<ol>\n'
+            html = '<h2>User Files</h2>\n<hr/>\n<p>Click to download (Press <kbd>Ctrl</kbd>+<kbd>S</kbd> afterwards for text files):</p>\n<ol>\n'
         for name in USER_FILES:
             html += f'<li><a href="{name}">{name}</a></li>\n'
         if USER_FILES:
