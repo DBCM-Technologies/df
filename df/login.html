@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width"/>
+		<title>AFS</title>
+		<style>
+			form {
+				display: grid;
+				width: fit-content;
+				grid-template-columns: auto auto;
+				gap: 1rem;
+				padding: 1rem;
+				margin: auto;
+			}
+			button {
+				grid-column: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<form method="POST">
+			<label for="user">User:</label>
+			<span>
+				<input name="user" autocomplete="off"/><br/>
+			</span>
+			
+			<label for="passwd">Password:</label>
+			<span>
+				<input name="passwd" autocomplete="off" type="password"/><br/>
+			</span>
+			
+			<button>Login</button>
+		</form>
+	</body>
+</html>

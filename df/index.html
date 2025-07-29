@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>DF</title>
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="preload" as="image" href="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1"/>
+		<style>
+			body {
+				background-color: #013368;
+				color: #fff;
+			}
+			a {
+				color: #f95;
+			}
+			a:focus {
+				outline: 2px dotted cyan;
+			}
+			header {
+				display: grid;
+				grid-template-columns: 1.4fr 1fr;
+				align-items: center;
+				gap: 1rem;
+			}
+			.heading {
+				justify-self: end;
+				position: relative;
+				background-color: black;
+				border-radius: 5px;
+				padding: 1rem;
+				box-sizing: padding-box;
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+			.heading::before {
+				content: "";
+				display: block;
+				z-index: -1;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				margin-top: -5px;
+				margin-left: -5px;
+				background-color: white;
+				border: 5px solid white;
+				border-radius: 5px;
+			}
+			h1 {
+				background: linear-gradient(to right, hotpink, orange, yellow, lime, cyan, skyblue, orchid);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				top: 0;
+				left: 0;
+				margin: 0;
+			}
+			form {
+				width: fit-content;
+			}
+			.button {
+				font-size: inherit;
+				color: white;
+				font-family: serif;
+				font-weight: bold;
+				background: #444;
+				border-style: solid;
+				border-width: 6px 6px 6px 6px;
+				border-color: #222 #222 #666 #666;
+				padding: 0.2em .8em 0.35em .8em;
+				cursor: pointer;
+				margin: 0.2em;
+				display: inline-block;
+				box-sizing: border-box;
+				height: calc(0.7em + 1em + 13px);
+				overflow-y: clip;
+			}
+			.button:hover:not(:active, .clicked) {
+				border-color: #fff #fff #444 #444;
+				background-color: #666;
+			}
+			.button:active {
+				cursor: grab;
+			}
+			.button:is(:focus, :focus-within) {
+				outline: 2px dotted cyan;
+			}
+			.button:is(:active, .clicked) {
+				background-color: #222;
+				border-color: #000 #000 #333 #333;
+			}
+			.button.upload {
+				background: #910;
+				border-color: #500 #500 #b22 #b22;
+			}
+			.button.upload:hover:not(:active, .clicked) {
+				border-color: #f55 #f55 #600 #600;
+				background-color: #800;
+			}
+			.button.upload:is(:active, .clicked) {
+				background-color: #400;
+				border-color: #000 #000 #500 #500;
+			}
+			.button.upload.ready {
+				background: #190;
+				border-color: #050 #050 #2b2 #2b2;
+			}
+			.button.upload.ready:hover:not(:active, .clicked) {
+				border-color: #5f5 #5f5 #060 #060;
+				background-color: #080;
+			}
+			.button.upload.ready:is(:active, .clicked) {
+				background-color: #040;
+				border-color: #000 #000 #050 #050;
+			}
+			.button.choose {
+				background: #990;
+				border-color: #550 #550 #bb2 #bb2;
+			}
+			.button.choose:hover:not(:active, .clicked) {
+				border-color: #ff5 #ff5 #660 #660;
+				background-color: #880;
+			}
+			.button.choose:is(:active, .clicked) {
+				background-color: #440;
+				border-color: #000 #000 #550 #550;
+			}
+			img {
+				justify-self: begin;
+				image-rendering: pixelated;
+				image-rendering: crisp-edges;
+				max-width: 300px;
+				border-radius: 100%;
+			}
+			main {
+				margin: auto;
+				max-width: 900px;
+				border-left: 2px solid hotpink;
+				border-right: 2px solid hotpink;
+				padding: .1rem .8rem;
+				background: linear-gradient(to right, #015, #114);
+			}
+			hr {
+				color: hotpink;
+				border: none;
+				border-bottom: 2px solid;
+			}
+			label[for="files"] {
+				position: relative;
+				cursor: pointer;
+			}
+			input[type="file"] {
+				display: none;
+			}
+			@media screen and (max-width: 900px) {
+				header {
+					grid-template-columns: none;
+					grid-template-rows: auto auto;
+					gap: 5px;
+					padding: 1rem;
+					place-items: center;
+				}
+				.heading {
+					justify-self: auto;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="heading">
+				<h1>D<span style="font-variant: small-caps">bcmt</span> Fileserver</h1>
+			</div>
+			<img src="https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1"></img>
+		</header>
+		<main>
+			[INSERT CONTENT]
+			<hr/>
+		<form method="POST" action="/upload" enctype="multipart/form-data">
+			<label for="files" class="button choose" onclick="this.querySelector('input').click()" tabindex="0"
+				onkeydown="if(event.key == 'Enter' || event.key == ' ') this.click()">
+				Choose File
+				<input type="file" name="files" multiple
+					onchange="document.querySelector('.upload').classList.add('ready')"/>
+			</label>
+			<button onclick="this.classList.toggle('clicked');if(!this.classList.contains('ready')) event.preventDefault();" class="upload button">Upload</button>
+		</form>
+			<hr/>
+		<form method="POST" action="/logout">
+			<button onclick="this.classList.toggle('clicked')" class="button">Logout</button>
+		</form>
+		<footer>
+			<p>&ldquo;Act responsibly.&rdquo; <sub style="font-family: sans-serif">~2025</sub></p>
+		</footer>
+		</main>
+	</body>
+</html>
