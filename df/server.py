@@ -5,6 +5,8 @@ from urllib.parse import parse_qs
 from mimetypes import guess_type
 from email.parser import BytesParser
 from email.policy import default as default_policy
+from gzip import compress
+
 import random
 
 BASE_DIR = Path(__file__).parent
@@ -86,12 +88,19 @@ class RequestHandler(BaseHTTPRequestHandler):
                 import traceback
                 traceback.print_exc()
         elif self.path in USER_FILES and self.is_authenticated():
+            accepting = self.headers.get('Accept-Encoding', '')
+            gzipflag = "gzip" in accepting.lower()
             data = USER_FILES[self.path]
             self.send_response(200)
             self.send_header('Content-Type', guess_type(self.path)[0])
+            if gzipflag:
+                self.send_header('Content-Encoding', "gzip")
             self.send_header('Content-Length', str(len(data)))
             self.end_headers()
-            self.wfile.write(data)
+            if gzipflag:
+                self.wfile.write(compress(data))
+            else:
+                self.wfile.write(data)
         elif self.path == '/' and self.is_authenticated():
             try:
                 self.send_response(200)
