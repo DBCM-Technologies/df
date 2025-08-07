@@ -4,6 +4,7 @@ setup(
     name='df',
     version='0.1.0',
     packages=find_packages(),
+    package_data={'df': ['*.html']},
     install_requires=[
         'psutil>=7.0.0'
     ],
